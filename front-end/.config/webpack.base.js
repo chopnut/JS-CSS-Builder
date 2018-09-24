@@ -1,31 +1,18 @@
 /*
     WEBPACK CONFIGURATION VARIABLES
 */
-// ========================================================
-// DEVELOPER TO CHANGE
-// ========================================================
-
-const hostURL = "localhost";
-const hostPORT = "8585";
 
 //- -------------------------------------------------------
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const devMode = process.env.NODE_ENV !== "production";
+
 
 module.exports = {
   entry: [__dirname + "/../entry.js"],
   // devtool: "source-map" make all your loaders be allowed to create a map during compile
   // good for debugging
   devtool: "source-map",
-  // tells where your webpack-dev-server where to watch for changes
-  devServer: {
-    contentBase: __dirname + "/../public/",
-    host: hostURL,
-    port: hostPORT
-  },
   output: {
     // where to put the bundle.js , but to use webpack-dev-server properly
     // use the path to public and just change the filename: to /path/bundle.js
@@ -37,7 +24,7 @@ module.exports = {
     publicPath: "/",
     */
 
-    filename: "assets/js/bundle[hash].js"
+    filename: "assets/js/bundle.js"
   },
   resolve: {
     extensions: [".js", ".jsx"]
@@ -107,11 +94,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/css/style[hash].css"
-    }),
-    new HtmlWebpackPlugin({
-      template: __dirname + "/../src/index.html",
-      inject: "body"
+      filename: "assets/css/style.css"
     })
   ]
 };
